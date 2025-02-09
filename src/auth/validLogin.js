@@ -32,8 +32,10 @@ export default  async function validLogin() {
             const response = await fetch('https://learn.zone01oujda.ma/api/auth/signin', {
                 method: "POST",
                 headers: {
+                   
                     "Authorization": `Basic ${BaseEmail}`,
                 },
+
             });
     
             if (response.ok) {
