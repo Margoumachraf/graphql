@@ -10,7 +10,9 @@ function router(path) {
         '/login': Login        // Login page
     };
 
-    // Check if the path exists in the routes object
+    if (!localStorage.getItem('Token')){
+        path='/login'
+    }
     if (routes[path]) {
         postsContainer.innerHTML = ''; // Clear the container before rendering new content
         routes[path](); // Call the function for the matched route
@@ -40,7 +42,7 @@ document.addEventListener('click', function (e) {
 
 // Render the homepage content
 function addEventOnPosts() {
-    Navbar(postsContainer);
+   
     postsContainer.innerHTML += '<h1>Welcome to the homepage</h1>';
 }
 
