@@ -1,0 +1,56 @@
+:root {
+    --shadow: 0 0 10px 2px rgb(160, 159, 159);
+    --primary-color: #F3C623;
+    --secondary-color: #EB8317;
+    --background-color: #e1e2e3;
+    --text-color: #212121;
+    --dislike-hover: #10375C;
+    --post-background: rgba(244, 244, 244, 0.8);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    box-shadow: var(--shadow);
+    z-index: 3;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: xx-large;
+}
+.Home{
+    text-decoration: none;
+}
+
+.navbar{
+    width: 17vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+}
+
+.level{
+    padding-left: 20%;
+}
