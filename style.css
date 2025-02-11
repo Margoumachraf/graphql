@@ -74,9 +74,14 @@ header {
     border-radius: 5px;
 }
 
-.level {
-    text-align: center;
-    margin: 10%;
+.ContanerIntra {
+    display: flex;               
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;         
+    text-align: center;          
+    margin: 10%;                  
+    height: 30vh;                 
 }
 
 /* Additional Styling for Responsiveness */
@@ -102,19 +107,26 @@ header {
         font-size: 1.5em;
     }
 
-    .level {
+    .ContanerIntra {
         margin: 30% 0 0 0;
     }
 }
 
 
 /* Level styling */
-.level {
-    background-color: var(--primary-color);
+.ContanerIntra {
+    /* background-color: var(--primary-color); */
     color: #fff;
     border-radius: 10px;
     box-shadow: var(--shadow);
 
+}
+
+.level {
+    background-color: var( --dislike-hover);
+    color: #fff;
+    border-radius: 10px;
+   
 }
 
 .levelKnow {

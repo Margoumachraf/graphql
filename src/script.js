@@ -1,23 +1,23 @@
 
 import Login from "./auth/login.js";
 import validLogin from "./auth/validLogin.js";
-import api  from "../api.js";
+import api from "../api.js";
 import formation from "./data/formation.js"
 
 const postsContainer = document.getElementById("Container");
 
 function router(path) {
     const routes = {
-        '/': addEventOnPosts, 
-        '/login': Login       
+        '/': addEventOnPosts,
+        '/login': Login
     };
 
     if (!localStorage.getItem('Token')) {
         path = '/login'
     }
     if (routes[path]) {
-        postsContainer.innerHTML = ''; 
-        routes[path](); 
+        postsContainer.innerHTML = '';
+        routes[path]();
     } else {
         postsContainer.innerHTML = '<h1>404 - Page Not Found</h1>';
     }
@@ -37,8 +37,8 @@ window.addEventListener('popstate', () => {
 
 document.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') {
-        e.preventDefault(); 
-        navigateTo(e.target.getAttribute('href')); 
+        e.preventDefault();
+        navigateTo(e.target.getAttribute('href'));
     }
 });
 
@@ -48,20 +48,41 @@ console.log(Token);
 async function addEventOnPosts() {
     const query = `{
   user {
-    id
     login
-    attrs
+    firstName
+    lastName
+    totalDown
+    totalUp
+    totalUpBonus
+    auditRatio
+    totalXp: transactions_aggregate(
+              where: {  
+      type: { _eq: "xp" },
+      event:{object:{name:{_eq :"Module"}}}
+        }
+        ) {
+        aggregate {
+        sum {
+            amount
+            }
+          }
+          } 
+        
   }
-  transaction(
+  
+  level : transaction(
     where: {
       type: { _eq: "level" },
-      path: { _nlike: "%/oujda/piscine-go/%" }
+      event:{object:{name:{_eq :"Module"}}}
     }
+    order_by :{amount :desc}
+    limit : 1
   ) {
     id
     amount
     type
     path
+  
   }
 }
 `;
@@ -87,15 +108,15 @@ async function addEventOnPosts() {
         // Parse the JSON response
         const data = await response.json();
         console.log(data);
-        
-        formation(postsContainer,data)
-       
+
+        formation(postsContainer, data)
+
     } catch (error) {
         // Handle network errors or any other errors
         console.error('Failed to add event on posts:', error);
     }
 
-   
+
 }
 
 // Initially call router based on current path
