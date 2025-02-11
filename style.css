@@ -2,7 +2,7 @@
     --shadow: 0 0 10px 2px rgb(160, 159, 159);
     --primary-color: #F3C623;
     --secondary-color: #EB8317;
-    --background-color: #e1e2e3;
+    --background-color: #d8dce0;
     --text-color: #212121;
     --dislike-hover: #10375C;
     --post-background: rgba(244, 244, 244, 0.8);
@@ -28,29 +28,111 @@ header {
     width: 100%;
     height: 10vh;
     box-shadow: var(--shadow);
-    z-index: 3;
     background-color: var(--secondary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    z-index: 1000; /* Keeps header above other content */
 }
 
 .logo {
     font-size: xx-large;
-}
-.Home{
-    text-decoration: none;
+    color: #fff;
+    text-decoration: none; /* Ensure logo isn't underlined if it's a link */
+    font-weight: bold;
 }
 
-.navbar{
-    width: 17vh;
+.Home {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.navbar {
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style-type: none;
+    margin: 0;
 }
 
-.level{
-    padding-left: 20%;
+.navbar li {
+    margin-left: 20px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: var(--dislike-hover);
+    border-radius: 5px;
+}
+
+.level {
+    text-align: center;
+    margin: 10%;
+}
+
+/* Additional Styling for Responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .level {
+        margin: 30% 0 0 0;
+    }
+}
+
+
+/* Level styling */
+.level {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+
+}
+
+.levelKnow {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Styling for posts container */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Optional: For when postsContainer has no content */
+.posts-container.empty {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.2em;
 }

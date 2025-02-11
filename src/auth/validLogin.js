@@ -46,6 +46,7 @@ export default  async function validLogin() {
                 localStorage.setItem("Token", data)
                 // Optionally, show an alert with the token
                 alert(`Token: ${data}`);
+                location.href="/"
             } else {
                 const data = await response.json();
                 // Handle error response from the server
