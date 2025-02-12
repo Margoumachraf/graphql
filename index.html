@@ -1,3 +1,109 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Line Chart with Labels (Y-axis Starts at 0)</title>
+    <style>
+        #chart-container {
+            width: 800px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chart-container">
+        <svg id="line-chart" width="100%" height="100%"></svg>
+    </div>
+
+    <script>
+        // Step 2: Define the data (e.g., an array of objects with value and label)
+        var data = [
+            { value: 10, label: "ht" },
+            { value: 20, label: "ht" },
+            { value: 30, label: "ht" },
+            { value: 40, label: "ht" }
+        ];
+
+        // Step 3: Set up the chart dimensions and scaling
+        var width = 800;
+        var height = 400;
+        var margin = 50; // Margin for axes
+        var maxValue = Math.max(...data.map(d => d.value)); // Get the maximum y-value
+        var minValue = 0; // Set the minimum y-value to 0 for scaling
+
+        // Create scales for x and y axes
+        var xScale = (width - 2 * margin) / (data.length - 1); // Horizontal scaling based on the number of points
+        var yScale = (height - 2 * margin) / (maxValue - minValue); // Vertical scaling based on the data range (y-axis starts from 0)
+
+        // Get the SVG element
+        var svg = document.getElementById('line-chart');
+
+        // Step 4: Create the path (line) based on the data points
+        var path = 'M ' + margin + ',' + (height - margin - (data[0].value - minValue) * yScale); // Start point
+
+        for (var i = 1; i < data.length; i++) {
+            var x = margin + i * xScale;
+            var y = height - margin - (data[i].value - minValue) * yScale;
+            path += ' L ' + x + ',' + y; // Draw line to each point
+        }
+
+        // Step 5: Create the line using the <path> element
+        var line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', path);
+        line.setAttribute('stroke', '#4CAF50');
+        line.setAttribute('stroke-width', '2');
+        line.setAttribute('fill', 'none'); // Line only, no fill
+
+        // Add the line to the SVG
+        svg.appendChild(line);
+
+        // Step 6: Add labels to the data points
+        data.forEach((point, index) => {
+            var x = margin + index * xScale;
+            var y = height - margin - (point.value - minValue) * yScale;
+            var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', x);
+            text.setAttribute('y', y - 10); // Position the label above the point
+            text.setAttribute('font-size', '12');
+            text.setAttribute('fill', 'black');
+            text.textContent = point.label; // Add the label (e.g., "ht")
+            svg.appendChild(text);
+        });
+
+        // Optional: Add some axes
+        function drawAxis() {
+            // Create X-axis (horizontal)
+            var xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            xAxis.setAttribute('x1', margin);
+            xAxis.setAttribute('y1', height - margin);
+            xAxis.setAttribute('x2', width - margin);
+            xAxis.setAttribute('y2', height - margin);
+            xAxis.setAttribute('stroke', '#000');
+            xAxis.setAttribute('stroke-width', '2');
+            svg.appendChild(xAxis);
+
+            // Create Y-axis (vertical)
+            var yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            yAxis.setAttribute('x1', margin);
+            yAxis.setAttribute('y1', margin);
+            yAxis.setAttribute('x2', margin);
+            yAxis.setAttribute('y2', height - margin);
+            yAxis.setAttribute('stroke', '#000');
+            yAxis.setAttribute('stroke-width', '2');
+            svg.appendChild(yAxis);
+        }
+
+        // Call the function to draw the axes
+        drawAxis();
+    </script>
+
+</body>
+</html> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +117,3 @@
     <script type="module" src="src/script.js"></script>
 </body>
 </html>
-
-
-<!-- <svg width="10%" height="10%" viewBox="0 0 42 42" class="donut">
-    <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
-    <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#212121" stroke-width="3"></circle>
-  
-    <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ce4b99" stroke-width="3" stroke-dasharray="85 15" stroke-dashoffset="0"></circle>
-  </svg> -->

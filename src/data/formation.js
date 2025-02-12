@@ -98,12 +98,12 @@ SVG.innerHTML = `
 const totalUpElement = document.createElement("div");
 totalUpElement.className = 'totalUpElement';
 totalUpElement.style.backgroundColor = "#ce4b99";
-totalUpElement.innerText = `Done: ${totalUp}`;
+totalUpElement.innerText = `Done: ${convertSize(totalUp)}`;
 
 const totalDownElement = document.createElement("div");
 totalDownElement.className = 'totalDownElement';
 totalDownElement.style.backgroundColor = "#d2d3d4";
-totalDownElement.innerText = `Received: ${totalDown}`;
+totalDownElement.innerText = `Received: ${convertSize(totalDown)}`;
 
 // Display Audit Ratio
 const Audits_ratio = document.createElement("div");
@@ -137,6 +137,35 @@ function percentageToStrokeLength(percentage) {
     const amount=sum.map(i=>i.sum)
     console.log(amount.map(i=>i.amount));
 
+    const amountElement = document.createElement("div")
+    amountElement.className="amountElement"
 
+    const amountHeader=document.createElement("h1")
+    amountHeader.className="amountHeader"
+    amountHeader.textContent="XP"
+
+
+    const amountValue=document.createElement("p")
+    amountValue.textContent=`${amount.map(i=>convertSize(i.amount))}`
+    amountElement.appendChild(amountHeader)
+    amountElement.appendChild(amountValue)
     
+    ContanerIntra.appendChild(amountElement)
+
+
  } 
+
+
+
+
+ function convertSize(value) {
+  if (value >= 1000000){
+    let MG= value / 1000000
+    return  `${MG} MG`; 
+  }else if (value >= 1000) {
+    let kb= value / 1000
+    return  `${kb} KB`; 
+  } else  {
+    return value
+  }
+}

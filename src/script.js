@@ -55,6 +55,20 @@ async function addEventOnPosts() {
     totalUp
     totalUpBonus
     auditRatio
+     finished_projects: groups(
+      where: {group: {status: {_eq: finished}, _and: [{path: {_like: "%module%"}}, {path: {_nilike: "%piscine-js%"}}]}}
+    ) {
+      
+    
+      group {
+        status
+        
+        path
+        members{
+          userLogin
+        }
+      }
+    }
     totalXp: transactions_aggregate(
               where: {  
       type: { _eq: "xp" },
