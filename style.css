@@ -148,3 +148,9 @@ header {
     color: var(--text-color);
     font-size: 1.2em;
 }
+
+
+.SVGChart{
+    width: 200px;
+    height: 200px;
+}

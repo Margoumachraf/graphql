@@ -25,7 +25,7 @@ export default  async function validLogin() {
     const BaseEmail = btoa(`${email.value}:${password.value}`);
 
     if (isValidpassword && isValidusrname) {
-        console.log(BaseEmail);
+     
         
         try {
             // Send the POST request
@@ -42,10 +42,10 @@ export default  async function validLogin() {
                 const data = await response.json();
             
                 // Log the token to the console
-                console.log("Token:", data);
+               
                 localStorage.setItem("Token", data)
                 // Optionally, show an alert with the token
-                alert(`Token: ${data}`);
+                
                 location.href="/"
             } else {
                 const data = await response.json();

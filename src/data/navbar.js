@@ -1,5 +1,5 @@
 export default function Navbar(data) {
-    console.log(data);
+
     
     const Container = document.getElementById("Container");
     const header = document.createElement("header");
