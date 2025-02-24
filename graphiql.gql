@@ -49,6 +49,57 @@
   
 #   }
 # }
+# {
+#   user {
+#     login
+#     firstName
+#     lastName
+#     totalDown
+#     totalUp
+#     totalUpBonus
+#     auditRatio
+#     transactions (where:{_and:[
+#             {type :{_eq :"xp"}}
+#             {event :{object :{name :{_eq :"Module"}}}}
+#         ]}
+#             order_by :{createdAt :asc}
+#         ){
+#             amount
+#             object{
+#                 name
+#             }
+#             createdAt
+#         }
+#     totalXp: transactions_aggregate(
+#               where: {  
+#       type: { _eq: "xp" },
+#       event:{object:{name:{_eq :"Module"}}}
+#         }
+#         ) {
+#         aggregate {
+#         sum {
+#             amount
+#             }
+#           }
+#           } 
+        
+#   }
+  
+#   level : transaction(
+#     where: {
+#       type: { _eq: "level" },
+#       event:{object:{name:{_eq :"Module"}}}
+#     }
+#     order_by :{amount :desc}
+#     limit : 1
+#   ) {
+#     id
+#     amount
+#     type
+#     path
+  
+#   }
+# }
 
 
 {
@@ -100,4 +151,21 @@
             createdAt
         }
       
-    }
+    
+    
+    
+    level : transaction(
+    where: {
+       type: { _eq: "level" },
+       event:{object:{name:{_eq :"Module"}}}
+     }
+     order_by :{amount :desc}
+     limit : 1
+   ) {
+     id
+     amount
+     type
+     path
+  
+   }
+ }

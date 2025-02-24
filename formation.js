@@ -3,7 +3,6 @@ import navbar from "./src/data/navbar.js";
 export default function formation(postsContainer, data) {
 
 
-  navbar(data.data.user)
   Container(data.data, postsContainer)
 
 }
@@ -14,10 +13,10 @@ function Container(data, postsContainer) {
 
   const ContanerIntra = document.createElement("div")
   ContanerIntra.className = "ContanerIntra"
-  // level(ContanerIntra, data.level)
-  // Audits(ContanerIntra, data.user)
-  // XP(ContanerIntra, data.user)
-  ProjectValid(ContanerIntra, data.user)
+  level(ContanerIntra, data.level)
+  Audits(ContanerIntra, data.user)
+  XP(ContanerIntra, data.user)
+  // ProjectValid(ContanerIntra, data.user)
 
   postsContainer.appendChild(ContanerIntra)
 
