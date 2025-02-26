@@ -5,7 +5,7 @@ import api from "../api.js";
 import CreateNext from "./data/CreateNext.js";
 
 
-const postsContainer = document.getElementById("Container");
+const postsContainer = document.getElementById("section");
 
 function router(path) {
     const routes = {
@@ -69,6 +69,7 @@ async function addEventOnPosts() {
 
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
+
         }
 
         
@@ -80,6 +81,7 @@ async function addEventOnPosts() {
 
     } catch (error) {
         
+        localStorage.clear()
         console.error('Failed to add event on posts:', error);
     }
 

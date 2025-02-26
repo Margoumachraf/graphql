@@ -1,4 +1,4 @@
-import navbar from "./src/data/navbar.js";
+
 
 export default function formation(postsContainer, data) {
 

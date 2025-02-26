@@ -2,10 +2,11 @@
 
 export default  function Login() {
 
-    const Container = document.getElementById("Container");
+    const Container = document.getElementById("section");
+console.log(Container);
 
     // Navbar(Container)
-    Container.innerHTML += `
+    Container.innerHTML = `
 <div class="form" >
         <h1 class="minititle">Log In</h1>
         <form id="loginForm">

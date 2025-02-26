@@ -1,21 +1,45 @@
-export default function CreateNext(postsContainer,data) {
-  const div = document.createElement("div");
-  div.className = "next";
-  const divpath = creatPath(data.transaction);
-  console.log(data);
-  
-  level(div, data.level)
-  Audits(div, data.user)
-  XP(div, data.user)
-  div.append(divpath);
+export default function CreateNext(postsContainer, data) {
 
-  postsContainer.append(div)
+console.log(data.transaction);
+
+// console.log(data);
+const div = document.createElement("div");
+div.className = "row";
+showUserinfo(postsContainer, data.user)
+level(div, data.level)
+Audits(div, data.user)
+XP(div, data.user)
+postsContainer.appendChild(div)
+postsContainer.appendChild(creatPath(data.transaction));
 }
 
 
- function creatPath(trans) {
+function showUserinfo(element, dataUser) {
+  const div = document.createElement("header");
+  div.className = "user header";
+  const name = document.createElement("span");
+  name.className = "username";
+  const logOut = document.createElement("button");
+  logOut.innerHTML = "Log Out";
+  logOut.className = "log-out";
+  dataUser.map(i=>{
+    name.innerText = `Welcome,  ${i.firstName} ${i.lastName}!`;
+    div.append(name, logOut);
+
+  })
+  element.append(div);
+  logOut.addEventListener("click", () => {
+    localStorage.removeItem("jwt-token");
+    select.innerHTML = logincp;
+    login();
+  });
+}
+
+
+
+function creatPath(trans) {
   console.log(trans);
-  
+
   let cumulativeXP = 0;
   const width = 680;
   const height = 303;
@@ -30,7 +54,7 @@ export default function CreateNext(postsContainer,data) {
     };
   });
   console.log(dataPoints);
-  
+
   if (dataPoints.length === 0) return;
 
   const endTime = dataPoints[dataPoints.length - 1].date;
@@ -60,7 +84,7 @@ export default function CreateNext(postsContainer,data) {
   svg.append(path);
   dataPoints.forEach((point) => {
     console.log(point.name);
-    
+
     const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"
@@ -109,21 +133,23 @@ function scaleY(xp, maxXP, height) {
 
 
 function level(ContanerIntra, transaction) {
-
-
+  const element =document.createElement("div")
+  element.className="user-level"
 
   const level = document.createElement("div")
-  level.className = "level"
+  level.className = "card"
   const headerlevel = document.createElement("h2")
-  headerlevel.className = "headerlevel"
+  headerlevel.className = "titleRatio titlelevel"
   headerlevel.textContent = "level"
 
   const levelKnow = document.createElement("div")
-  levelKnow.className = "levelKnow"
+  levelKnow.className = "level"
   levelKnow.textContent = transaction[transaction.length - 1].amount
-  level.appendChild(headerlevel)
-  level.appendChild(levelKnow)
 
+  element.appendChild(headerlevel)
+  element.appendChild(levelKnow)
+
+  level.appendChild(element)
   ContanerIntra.appendChild(level)
 }
 
@@ -133,7 +159,7 @@ function Audits(ContanerIntra, data) {
 
 
   const audits = document.createElement("div");
-  audits.className = 'audite';
+  audits.className = 'card';
   let totalUp = 0;
   let totalDown = 0;
 
@@ -210,7 +236,8 @@ function percentageToStrokeLength(percentage) {
 
 
 function XP(ContanerIntra, totalXp) {
-
+  const element =document.createElement("div")
+  element.className="card"
   const aggregate = totalXp.map(i => i.totalXp)
 
   const sum = aggregate.map(i => i.aggregate)
@@ -219,19 +246,21 @@ function XP(ContanerIntra, totalXp) {
 
 
   const amountElement = document.createElement("div")
-  amountElement.className = "amountElement"
+  amountElement.className = "user-xp"
 
   const amountHeader = document.createElement("h1")
-  amountHeader.className = "amountHeader"
+  amountHeader.className = "titleRatio titlelevel"
   amountHeader.textContent = "XP"
 
 
   const amountValue = document.createElement("p")
+  amountValue.className="level xp"
   amountValue.textContent = `${amount.map(i => convertSize(i.amount))}`
   amountElement.appendChild(amountHeader)
   amountElement.appendChild(amountValue)
+  element.appendChild(amountElement)
 
-  ContanerIntra.appendChild(amountElement)
+  ContanerIntra.appendChild(element)
 
 
 }
