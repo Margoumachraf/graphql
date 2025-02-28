@@ -1,4 +1,4 @@
-
+import Api from "../api.js";
 
 export default  async function validLogin() {
     var email = document.getElementById("email");
@@ -29,7 +29,7 @@ export default  async function validLogin() {
         
         try {
             // Send the POST request
-            const response = await fetch('https://learn.zone01oujda.ma/api/auth/signin', {
+            const response = await fetch(`${Api}/auth/signin`, {
                 method: "POST",
                 headers: {
                    

@@ -71,12 +71,13 @@ function creatPath(trans) {
 
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
+ 
   path.setAttribute("d", pathData);
   path.setAttribute("stroke", "#ffff");
   path.setAttribute("fill", "transparent");
   path.setAttribute("stroke-width", "3");
 
+  svg.classList.add('SVG');
   svg.setAttribute("width", "90%");
   svg.setAttribute("height", "90%");
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
@@ -173,23 +174,20 @@ function Audits(ContanerIntra, data) {
   const totalValue = totalUp + totalDown;
 
 
-  // Calculate the percentage of each part of the pie
+
   const percentageUp = (totalUp / totalValue) * 100;
   const percentageDown = (totalDown / totalValue) * 100;
 
 
 
-  // Function to convert percentage to stroke length for the circle's circumference
 
-  // Create the SVG element with stroke-dasharray
   const SVG = document.createElement("div");
 
-  // Calculate stroke-dasharray for each part of the pie
+
   const dashArrayDown = percentageToStrokeLength(percentageDown);
   const dashArrayUp = percentageToStrokeLength(percentageUp);
 
 
-  // Create the pie chart SVG
   SVG.innerHTML = `
 <svg height="40%" width="40%" viewBox="0 0 20 20">
   <circle r="10" cx="10" cy="10" fill="#ce4b99" />
@@ -212,15 +210,14 @@ function Audits(ContanerIntra, data) {
   totalDownElement.style.backgroundColor = "#d2d3d4";
   totalDownElement.innerText = `Received: ${convertSize(totalDown)}`;
 
-  // Display Audit Ratio
+
   const Audits_ratio = document.createElement("div");
   let auditRatio = data.map(i => i.auditRatio);
 
   Audits_ratio.className = 'Audits_ratio';
   Audits_ratio.style.backgroundColor = "#F3C623";
-  Audits_ratio.innerText = `You can do better! ${auditRatio.map(value => value.toFixed(1))}`;
+  Audits_ratio.innerText = `${auditRatio.map(value => value.toFixed(1))}`;
 
-  // Append elements to the main container
   audits.appendChild(SVG);
   audits.appendChild(totalUpElement);
   audits.appendChild(totalDownElement);

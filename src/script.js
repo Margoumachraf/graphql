@@ -1,7 +1,7 @@
 
 import Login from "./auth/login.js";
 import validLogin from "./auth/validLogin.js";
-import api from "../api.js";
+import Api from "./api.js";
 import CreateNext from "./data/CreateNext.js";
 
 
@@ -54,7 +54,7 @@ async function addEventOnPosts() {
    
 
     try {
-        const response = await fetch(api, {
+        const response = await fetch(`${Api}/graphql-engine/v1/graphql`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
