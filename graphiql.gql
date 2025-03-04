@@ -19,21 +19,20 @@
             }
             createdAt
         }
-        totalXp: transactions_aggregate(
-              where: {
-              _and: [
-              { type: { _eq: "xp" } }
-              {object: {type:{_eq :"project"}}}
-        ]
-        }
-        ) {
-        aggregate {
-        sum {
-            amount
-            }
-          }
-          } 
-        }
+      totalXp: transactions_aggregate(
+               where: {  
+       type: { _eq: "xp" },
+       event:{object:{name:{_eq :"Module"}}}
+         }
+         ) {
+         aggregate {
+         sum {
+             amount
+             }
+           }
+           } 
+        
+   }
         transaction (where:{_and:[
             {type :{_eq :"xp"}}
             {object : {type : {_eq :"project"}}}
