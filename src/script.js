@@ -26,7 +26,6 @@ function router(path) {
 
 
 function navigateTo(path) {
-
     router(path);
 }
 
@@ -43,15 +42,15 @@ document.addEventListener('click', function (e) {
     }
 });
 
-const Token = localStorage.getItem('Token')
 
 
 export default async function addEventOnPosts() {
-
     
+    const Token = localStorage.getItem('Token')
+
     const ResponseQuery = await fetch('src/graphiql.gql');
     const query = await ResponseQuery.text();
-   
+
 
     try {
         const response = await fetch(`${Api}/graphql-engine/v1/graphql`, {
@@ -64,7 +63,7 @@ export default async function addEventOnPosts() {
                 query
             })
         });
-      
+
 
 
         if (!response.ok) {
@@ -72,17 +71,18 @@ export default async function addEventOnPosts() {
 
         }
 
-        
+
         const data = await response.json();
-        
+console.log(data);
 
 
 
-        CreateNext(postsContainer,data.data);
+
+        CreateNext(postsContainer, data.data);
 
     } catch (error) {
-        
-        // localStorage.clear()
+
+        localStorage.clear()
         console.error('Failed to add event on posts:', error);
     }
 
@@ -98,7 +98,7 @@ postsContainer.addEventListener("click", (e) => {
 
 
     const valid = e.target.classList.contains("submit")
-   
+
 
     if (valid) {
         validLogin()

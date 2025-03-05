@@ -31,7 +31,7 @@ function showUserinfo(element, dataUser) {
   })
   element.append(div);
   logOut.addEventListener("click", () => {
-    localStorage.removeItem("Token");
+    localStorage.clear()
     Login()
   });
 }
