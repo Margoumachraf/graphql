@@ -8,24 +8,30 @@ import CreateNext from "./data/CreateNext.js";
 const postsContainer = document.getElementById("section");
 
 function router(path) {
-    const routes = {
-        '/': addEventOnPosts,
-        '/login': Login
-    };
+    // const routes = {
+    //     '/': addEventOnPosts,
+    //     '/login': Login
+    // };
 
     if (!localStorage.getItem('Token')) {
         path = '/login'
     }
-    if (routes[path]) {
-        postsContainer.innerHTML = '';
-        routes[path]();
-    } else {
-        postsContainer.innerHTML = '<h1>404 - Page Not Found</h1>';
+    if (path == '/login') {
+        Login()
+    }else {
+        addEventOnPosts()
     }
+    // if (routes[path]) {
+    //     postsContainer.innerHTML = '';
+    //     routes[path]();
+    // } else {
+    //     postsContainer.innerHTML = '<h1>404 - Page Not Found</h1>';
+    // }
 }
 
 
 function navigateTo(path) {
+    window.history.pushState({}, "", path);
     router(path);
 }
 
