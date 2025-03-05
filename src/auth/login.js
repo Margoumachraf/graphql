@@ -1,20 +1,14 @@
-// import Navbar from "../navbar.js";
 
-export default  function Login() {
-
+export default function Login() {
     const Container = document.getElementById("section");
-console.log(Container);
-
-    // Navbar(Container)
     Container.innerHTML = `
 <div class="form" >
         <h1 class="minititle">Log In</h1>
         <form id="loginForm">
-        <label class="lbl" for="email">Email or username</label>
+        <label  class="lbl"for="email"><b>Email or username</b></label>
         <input class="impt" type="text" id="email" name="email" />
         <p id="erroremail"></p>
-
-        <label class="lbl" for="password">Password</label>
+        <label  class="lbl"for="password"><b>Password</b></label>
         <input class="impt" type="password" id="password" name="password" />
         <p id="errorPassword"></p>
 

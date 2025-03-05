@@ -1,8 +1,7 @@
+import Login from "../auth/login.js";
+
 export default function CreateNext(postsContainer, data) {
 
-console.log(data.transaction);
-
-// console.log(data);
 const div = document.createElement("div");
 div.className = "row";
 showUserinfo(postsContainer, data.user)
@@ -29,9 +28,9 @@ function showUserinfo(element, dataUser) {
   })
   element.append(div);
   logOut.addEventListener("click", () => {
-    localStorage.removeItem("jwt-token");
-    select.innerHTML = logincp;
-    login();
+    localStorage.removeItem("Token");
+    element.className="log_in_form"
+    Login()
   });
 }
 
@@ -53,7 +52,7 @@ function creatPath(trans) {
       xp: cumulativeXP,
     };
   });
-  console.log(dataPoints);
+  console.log("dataPoints",dataPoints);
 
   if (dataPoints.length === 0) return;
 
@@ -78,10 +77,7 @@ function creatPath(trans) {
   path.setAttribute("stroke-width", "3");
 
   svg.classList.add('SVG');
-  svg.setAttribute("width", "90%");
-  svg.setAttribute("height", "90%");
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   svg.append(path);
   dataPoints.forEach((point) => {
     console.log(point.name);
@@ -188,6 +184,7 @@ function Audits(ContanerIntra, data) {
   const dashArrayUp = percentageToStrokeLength(percentageUp);
 
 
+
   SVG.innerHTML = `
 <svg height="40%" width="40%" viewBox="0 0 20 20">
   <circle r="10" cx="10" cy="10" fill="#ce4b99" />
@@ -226,7 +223,7 @@ function Audits(ContanerIntra, data) {
 
 }
 function percentageToStrokeLength(percentage) {
-  const circleLength = 31.4;
+  const circleLength = 2*3.14*5;
   return (percentage / 100) * circleLength;
 }
 
