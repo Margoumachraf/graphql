@@ -2,8 +2,11 @@ import Login from "../auth/login.js";
 
 export default function CreateNext(postsContainer, data) {
 
+
 const div = document.createElement("div");
 div.className = "row";
+
+
 showUserinfo(postsContainer, data.user)
 level(div, data.level)
 Audits(div, data.user)
@@ -29,7 +32,6 @@ function showUserinfo(element, dataUser) {
   element.append(div);
   logOut.addEventListener("click", () => {
     localStorage.removeItem("Token");
-    element.className="log_in_form"
     Login()
   });
 }
@@ -37,8 +39,6 @@ function showUserinfo(element, dataUser) {
 
 
 function creatPath(trans) {
-  console.log(trans);
-
   let cumulativeXP = 0;
   const width = 680;
   const height = 303;
@@ -52,7 +52,7 @@ function creatPath(trans) {
       xp: cumulativeXP,
     };
   });
-  console.log("dataPoints",dataPoints);
+
 
   if (dataPoints.length === 0) return;
 
@@ -80,8 +80,6 @@ function creatPath(trans) {
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   svg.append(path);
   dataPoints.forEach((point) => {
-    console.log(point.name);
-
     const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "circle"

@@ -2,8 +2,8 @@
 export default function Login() {
     const Container = document.getElementById("section");
     Container.innerHTML = `
+    <h1 class="minititle">Log In</h1>
 <div class="form" >
-        <h1 class="minititle">Log In</h1>
         <form id="loginForm">
         <label  class="lbl"for="email"><b>Email or username</b></label>
         <input class="impt" type="text" id="email" name="email" />

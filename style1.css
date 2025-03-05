@@ -85,7 +85,7 @@ body {
 
 
 
-input{
+input {
     display: block;
     padding: 14.5px;
     color: white;
@@ -97,19 +97,28 @@ input{
     font-size: 15px;
 }
 
-
-.minititle{
+.minititle {
     text-align: center;
 }
 
-#loginForm{
+
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+.submit{
     text-align: center;
 }
 
-/* .log_in_form {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  } */
+.submit {
+    display: block;
+    padding: 14.5px;
+    color: white;
+    outline: none;
+    background-color: #9191911f;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 15px;
+}

@@ -46,7 +46,7 @@ document.addEventListener('click', function (e) {
 const Token = localStorage.getItem('Token')
 
 
-async function addEventOnPosts() {
+export default async function addEventOnPosts() {
 
     
     const ResponseQuery = await fetch('graphiql.gql');
@@ -77,11 +77,12 @@ async function addEventOnPosts() {
         
 
 
+
         CreateNext(postsContainer,data.data);
 
     } catch (error) {
         
-        localStorage.clear()
+        // localStorage.clear()
         console.error('Failed to add event on posts:', error);
     }
 

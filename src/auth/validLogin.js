@@ -1,6 +1,8 @@
 import Api from "../api.js";
+import addEventOnPosts from "../script.js";
 
 export default  async function validLogin() {
+    const postsContainer = document.getElementById("section");
     var email = document.getElementById("email");
     var password = document.getElementById("password");
     var isValidusrname = true;
@@ -41,12 +43,11 @@ export default  async function validLogin() {
             if (response.ok) {
                 const data = await response.json();
             
-                // Log the token to the console
+                
                
                 localStorage.setItem("Token", data)
-                // Optionally, show an alert with the token
-                
-                location.href="/"
+                postsContainer.innerHTML=""
+                addEventOnPosts()
             } else {
                 const data = await response.json();
                 // Handle error response from the server
