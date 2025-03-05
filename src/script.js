@@ -49,7 +49,7 @@ const Token = localStorage.getItem('Token')
 export default async function addEventOnPosts() {
 
     
-    const ResponseQuery = await fetch('graphiql.gql');
+    const ResponseQuery = await fetch('src/graphiql.gql');
     const query = await ResponseQuery.text();
    
 
